@@ -6,7 +6,7 @@ Brand Extract opens a web page in headless Chromium and measures its colors, typ
 
 ## Run it
 
-Requires Node.js 22 or later and npm. On Linux, use `npx playwright install --with-deps chromium` in the installation step.
+Node.js 22 or later runs the CLI. npm installs Playwright, which launches Chromium to measure the rendered page. On Linux, use `npx playwright install --with-deps chromium` in the browser installation step.
 
 ```sh
 git clone https://github.com/PAAparaschivei/brand-extract.git
@@ -27,18 +27,29 @@ The default theme is light. Add `--theme dark` to request the browser's dark col
 | `layout` | Padding, margin, gaps, corner radii, shadows and borders |
 | `source` | Final page URL without query or fragment, requested theme and viewport |
 
-For example, the included fictional site produces measurements like these:
+## Example
+
+The [fictional Field Notes site](examples/site.html) rendered in Chromium. The two links share a green background, the heading uses 48 px Georgia and the links sit 12 px apart.
+
+![Field Notes sample site with a large serif heading and two green links](docs/field-notes.png)
+
+These fields come from the CLI's JSON report.
 
 ```json
 {
-  "color": "#23614e",
-  "heading": { "fontFamily": "Georgia, serif", "fontSize": "48px" },
-  "gapPx": 12,
-  "cornerRadiiPx": [8, 16]
+  "colors": [
+    { "color": "rgb(35, 97, 78)", "hex": "#23614e", "count": 2, "contexts": { "bg": 2 } }
+  ],
+  "typography": {
+    "headings": { "h1": { "fontFamily": "Georgia, serif", "fontSize": "48px" } }
+  },
+  "layout": {
+    "scales": { "gap": [12], "radius": [8, 16] }
+  }
 }
 ```
 
-That excerpt condenses values from the report. Counts describe occurrences in the sampled DOM, including inherited styles. Inspect the report alongside the page before treating a frequent value as a brand token. The CLI samples one desktop viewport and caps its probes at roughly 5,000 elements. It measures the initial page load and uses the site's response to `prefers-color-scheme`.
+Counts describe occurrences in the sampled DOM, including inherited styles. Inspect the report alongside the page before treating a frequent value as a brand token. The CLI samples one desktop viewport and caps its probes at roughly 5,000 elements. It measures the initial page load and uses the site's response to `prefers-color-scheme`.
 
 ## Data and permissions
 
