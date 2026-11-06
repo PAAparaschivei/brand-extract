@@ -31,7 +31,7 @@ The default theme is light. Add `--theme dark` to request the browser's dark col
 
 The [fictional Field Notes site](examples/site.html) rendered in Chromium. The two links share a green background, the heading uses 48 px Georgia and the links sit 12 px apart.
 
-![Field Notes sample site with a large serif heading and two green links](docs/field-notes.png)
+[![Field Notes sample site with a large serif heading and two green links](docs/field-notes-hero.png)](docs/field-notes.png)
 
 These fields come from the CLI's JSON report.
 
