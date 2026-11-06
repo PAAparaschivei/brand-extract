@@ -1,0 +1,12 @@
+{
+  "name": "brand-extract",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Measure the visual styles of a web page with Chromium.",
+  "license": "Apache-2.0",
+  "bin": { "brand-extract": "./src/cli.mjs" },
+  "engines": { "node": ">=22" },
+  "scripts": { "extract": "node src/cli.mjs", "test": "node --test" },
+  "dependencies": { "playwright": "1.65.0" }
+}
